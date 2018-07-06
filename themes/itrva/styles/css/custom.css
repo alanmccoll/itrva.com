@@ -1,0 +1,21 @@
+/**
+ * Custom CSS
+ * Use this file to override styles if you feel uncomfortable editing
+ * component stylesheets.
+ ============================================================================ */
+
+/* Main Menu */
+.pr-navbar {
+	background:#1E434C;
+}
+
+/* Forms */
+.description {
+	font-size:1.0em;
+	font-style:italic;
+	color:#555;
+	}
+	
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}

@@ -1,0 +1,27 @@
+diff --git a/core/lib/Drupal/Core/EventSubscriber/RedirectResponseSubscriber.php b/core/lib/Drupal/Core/EventSubscriber/RedirectResponseSubscriber.php
+index b9a64d5..a427c10 100644
+--- a/core/lib/Drupal/Core/EventSubscriber/RedirectResponseSubscriber.php
++++ b/core/lib/Drupal/Core/EventSubscriber/RedirectResponseSubscriber.php
+@@ -4,7 +4,7 @@
+ 
+ use Drupal\Component\HttpFoundation\SecuredRedirectResponse;
+ use Drupal\Component\Utility\UrlHelper;
+-use Drupal\Core\Routing\LocalRedirectResponse;
++use Drupal\Core\Routing\TrustedRedirectResponse;
+ use Drupal\Core\Routing\RequestContext;
+ use Drupal\Core\Utility\UnroutedUrlAssemblerInterface;
+ use Symfony\Component\HttpFoundation\Response;
+@@ -69,9 +69,9 @@ public function checkRedirectUrl(FilterResponseEvent $event) {
+       if (!($response instanceof SecuredRedirectResponse)) {
+         try {
+           // SecuredRedirectResponse is an abstract class that requires a
+-          // concrete implementation. Default to LocalRedirectResponse, which
+-          // considers only redirects to within the same site as safe.
+-          $safe_response = LocalRedirectResponse::createFromRedirectResponse($response);
++          // concrete implementation. Default to TrustedRedirectResponse, which
++          // allows external redirects.
++          $safe_response = TrustedRedirectResponse::createFromRedirectResponse($response);
+           $safe_response->setRequestContext($this->requestContext);
+         }
+         catch (\InvalidArgumentException $e) {
+
